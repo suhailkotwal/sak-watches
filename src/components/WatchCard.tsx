@@ -31,7 +31,7 @@ export default function WatchCard({ watch }: { watch: Watch }) {
   return (
     <article className="card">
       {watch.year ? <span className="card-badge">{watch.year}</span> : null}
-      <img className="card-image" src={watch.image ?? '/icons/icon-192.svg'} alt={name} />
+      <img className="card-image" src={watch.image ?? '/icons/default.svg'} alt={name} />
       <div className="card-body">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <h3 className="card-title">{name}</h3>
