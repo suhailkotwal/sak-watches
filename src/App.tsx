@@ -34,9 +34,37 @@ export default function App(): JSX.Element {
     const parseDate = (s?: any) => {
       if (!s) return 0
       const str = String(s).trim()
+
+      // YYYY-MM-DD
+      const isoFull = /^(\d{4})-(\d{2})-(\d{2})$/
+      const isoYM = /^(\d{4})-(\d{2})$/
+      const yearOnly = /^(\d{4})$/
+      const monthYear = /^([A-Za-z]+)\s+(\d{4})$/
+
+      let m
+      if (m = str.match(isoFull)) {
+        const y = Number(m[1]), mo = Number(m[2]) - 1, d = Number(m[3])
+        return Date.UTC(y, mo, d)
+      }
+      if (m = str.match(isoYM)) {
+        const y = Number(m[1]), mo = Number(m[2]) - 1
+        return Date.UTC(y, mo, 1)
+      }
+      if (m = str.match(yearOnly)) {
+        const y = Number(m[1])
+        return Date.UTC(y, 0, 1)
+      }
+      if (m = str.match(monthYear)) {
+        const monthName = m[1].toLowerCase()
+        const y = Number(m[2])
+        const months: Record<string, number> = { january:0, february:1, march:2, april:3, may:4, june:5, july:6, august:7, september:8, october:9, november:10, december:11 }
+        const mo = months[monthName] ?? Object.keys(months).findIndex(k => k.startsWith(monthName.slice(0,3)))
+        if (!isNaN(mo) && mo >= 0) return Date.UTC(y, mo, 1)
+      }
+
+      // Fallback — try Date.parse and Date constructor (best-effort)
       const t = Date.parse(str)
       if (!isNaN(t)) return t
-      // try month-year like 'June 2025' -> parse as first of month
       try {
         const d = new Date(str)
         const v = d.getTime()
