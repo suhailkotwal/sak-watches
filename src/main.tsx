@@ -9,14 +9,17 @@ createRoot(document.getElementById('root') as HTMLElement).render(
 	</React.StrictMode>
 )
 
-// Register service worker produced by vite-plugin-pwa when in production
-if ('serviceWorker' in navigator) {
-	window.addEventListener('load', () => {
-		navigator.serviceWorker.register('/sw.js').catch((err) => {
-			// swallow registration errors in dev
+// Register service worker produced by vite-plugin-pwa in production
+if ('serviceWorker' in navigator && import.meta.env.PROD) {
+	window.addEventListener('load', async () => {
+		try {
+			const swPath = `${import.meta.env.BASE_URL}sw.js`
+			await navigator.serviceWorker.register(swPath)
+		} catch (err) {
+			// swallow registration errors
 			// eslint-disable-next-line no-console
 			console.warn('Service worker registration failed:', err)
-		})
+		}
 	})
 }
 
