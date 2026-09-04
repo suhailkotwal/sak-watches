@@ -6,7 +6,9 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "generate-icons": "node scripts/generate-icons.js",
+    "convert-image": "node scripts/convert-image.js"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -18,6 +20,8 @@
     "vite-plugin-pwa": "^0.14.0",
     "typescript": "^5.1.6",
     "@types/react": "^18.2.21",
-    "@types/react-dom": "^18.2.7"
+    "@types/react-dom": "^18.2.7",
+    "sharp": "^0.32.0",
+    "svgo": "^3.0.0"
   }
 }

@@ -1,4 +1,5 @@
 import React from 'react'
+import imageAttrs from '../utils/image'
 
 type Watch = {
   id?: number
@@ -28,10 +29,20 @@ export default function WatchCard({ watch }: { watch: Watch }) {
   const name = watch.name ?? watch.title ?? 'Untitled'
   const company = watch.company ?? watch.brand ?? ''
 
+  const img = imageAttrs(watch.image)
+
   return (
     <article className="card">
       {watch.year ? <span className="card-badge">{watch.year}</span> : null}
-      <img className="card-image" src={watch.image ?? '/icons/default.svg'} alt={name} />
+      <img
+        className="card-image"
+        src={img.src}
+        srcSet={img.srcSet}
+        sizes={img.sizes}
+        alt={name}
+        loading="lazy"
+        decoding="async"
+      />
       <div className="card-body">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <h3 className="card-title">{name}</h3>

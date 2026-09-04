@@ -33,7 +33,7 @@ export default function App(): JSX.Element {
   return (
     <div className="app">
       <header className="topbar">
-        <div className="title">SAK Watches</div>
+        <div className="title">SAK Watch Portfolio</div>
         <div className="toolbar">
           <div className="count">{displayed.length} items</div>
           <div className="brand-filter">
