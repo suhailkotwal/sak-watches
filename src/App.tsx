@@ -1,11 +1,12 @@
 import React from 'react'
 import WatchCard from './components/WatchCard'
+import Filters from './components/Filters'
 import watchesData from './data/watches.json'
 
 export default function App(): JSX.Element {
   // use the watches JSON list
   const tiles = watchesData.map((w, i) => ({ ...w, id: i + 1 }))
-  const [sortBy, setSortBy] = React.useState('featured')
+  const [sortBy, setSortBy] = React.useState('newest')
   const [brandFilter, setBrandFilter] = React.useState('all')
   const [availabilityFilter, setAvailabilityFilter] = React.useState('all')
 
@@ -18,7 +19,7 @@ export default function App(): JSX.Element {
   }, [tiles])
 
   const displayed = React.useMemo(() => {
-    return tiles.filter((t) => {
+    const filtered = tiles.filter((t) => {
       if (brandFilter !== 'all' && (t.brand || '') !== brandFilter) return false
 
       // availability filter
@@ -28,41 +29,58 @@ export default function App(): JSX.Element {
 
       return true
     })
-  }, [tiles, brandFilter, availabilityFilter])
+
+    // Sorting
+    const parseDate = (s?: any) => {
+      if (!s) return 0
+      const str = String(s).trim()
+      const t = Date.parse(str)
+      if (!isNaN(t)) return t
+      // try month-year like 'June 2025' -> parse as first of month
+      try {
+        const d = new Date(str)
+        const v = d.getTime()
+        return isNaN(v) ? 0 : v
+      } catch (e) {
+        return 0
+      }
+    }
+
+    const getRelevant = (item: any) => {
+      // prefer purchase_date, fall back to sold_date
+      return parseDate(item.purchase_date) || parseDate(item.sold_date) || 0
+    }
+
+    if (sortBy === 'newest') {
+      filtered.sort((a, b) => getRelevant(b) - getRelevant(a))
+    } else if (sortBy === 'price-asc') {
+      filtered.sort((a, b) => (Number(a.purchase_price) || 0) - (Number(b.purchase_price) || 0))
+    } else if (sortBy === 'price-desc') {
+      filtered.sort((a, b) => (Number(b.purchase_price) || 0) - (Number(a.purchase_price) || 0))
+    }
+
+    return filtered
+  }, [tiles, brandFilter, availabilityFilter, sortBy])
+
+  const [filtersOpen, setFiltersOpen] = React.useState(false)
 
   return (
     <div className="app">
       <header className="topbar">
-        <div className="title">SAK Watch Portfolio</div>
-        <div className="toolbar">
+        <div className="top-row">
+          <div className="title">SAK Watch Portfolio</div>
           <div className="count">{displayed.length} items</div>
-          <div className="brand-filter">
-            <label htmlFor="brand-select">Brand</label>
-            <select id="brand-select" value={brandFilter} onChange={(e) => setBrandFilter(e.target.value)}>
-              <option value="all">All</option>
-              {brands.map((b) => (
-                <option key={b} value={b}>{b}</option>
-              ))}
-            </select>
-          </div>
-          <div className="availability-filter">
-            <label htmlFor="availability-select">Availability</label>
-            <select id="availability-select" value={availabilityFilter} onChange={(e) => setAvailabilityFilter(e.target.value)}>
-              <option value="all">All</option>
-              <option value="available">Available</option>
-              <option value="for-sale">For Sale</option>
-              <option value="sold">Sold</option>
-            </select>
-          </div>
-          <div className="sort">
-            <label htmlFor="sort-select">Sort by</label>
-            <select id="sort-select" value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-              <option value="featured">Featured</option>
-              <option value="price-asc">Price: Low → High</option>
-              <option value="price-desc">Price: High → Low</option>
-              <option value="newest">Newest</option>
-            </select>
-          </div>
+        </div>
+        <div className="toolbar">
+          <Filters
+            brands={brands}
+            brandFilter={brandFilter}
+            setBrandFilter={setBrandFilter}
+            availabilityFilter={availabilityFilter}
+            setAvailabilityFilter={setAvailabilityFilter}
+            sortBy={sortBy}
+            setSortBy={setSortBy}
+          />
         </div>
       </header>
 
