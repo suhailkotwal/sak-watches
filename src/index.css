@@ -86,4 +86,31 @@ header { text-align: center }
   font-size: 12px;
 }
 
+.status-pin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+}
+.status-pin img { width: 16px; height: 16px; display: block }
+
 .install-btn { margin-top: 12px; padding: 8px 12px; border-radius: 8px; border: none; background: #3b82f6; color: white }
+
+/* Mobile: hide horizontal toolbar and show filter button */
+.filter-button { display: none; background: transparent; border: 1px solid #e5e7eb; padding: 8px 10px; border-radius: 8px }
+
+@media (max-width: 640px) {
+  .topbar { flex-direction: column; align-items: flex-start }
+  .top-row { width: 100%; display:flex; justify-content:space-between; align-items:center; gap:8px }
+  .title { font-size: 18px }
+  .toolbar { display: flex; width: 100%; gap: 8px; flex-wrap: wrap; margin-top: 8px }
+  .toolbar > * { flex: 1 1 auto }
+}
+
+/* Drawer styles (kept for future if needed) */
+.drawer-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 60; display:flex; justify-content:flex-end }
+.drawer { width: 320px; max-width: 100%; height: 100%; background: #fff; padding: 16px; box-shadow: -8px 0 24px rgba(0,0,0,0.2); position: relative }
+.drawer-close { position: absolute; right: 8px; top: 8px; background: transparent; border: none; font-size: 18px }
+.drawer-body { margin-top: 32px; overflow: auto; height: calc(100% - 40px) }
+

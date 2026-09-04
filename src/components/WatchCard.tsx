@@ -18,6 +18,14 @@ function StatusBadge({ status }: { status?: string }) {
   if (!status) return null
   const sraw = String(status).trim().toLowerCase()
   if (sraw === 'no status' || sraw === 'none' || sraw === '') return null
+  // show pin icon in place of the textual status when pinned
+    if (sraw.includes('pinned')) {
+    return (
+      <span className="status-pin" title="Pinned">
+        <img src={`${import.meta.env.BASE_URL}icons/pin-icon.png?v=2`} alt="Pinned" aria-hidden="true" />
+      </span>
+    )
+  }
   const s = status.toLowerCase()
   let bg = '#6b7280'
   if (s.includes('sold')) bg = '#ef4444'

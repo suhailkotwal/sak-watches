@@ -51,12 +51,53 @@ export default function App(): JSX.Element {
       return parseDate(item.purchase_date) || parseDate(item.sold_date) || 0
     }
 
-    if (sortBy === 'newest') {
-      filtered.sort((a, b) => getRelevant(b) - getRelevant(a))
+    // Helper to derive status group: 0 = regular/no-status, 1 = sale/for-sale, 2 = sold
+    const statusGroup = (item: any) => {
+      const s = (item.status || '').toString().trim().toLowerCase()
+      if (s === '' || s === 'no status') return 0
+      if (s.includes('for') || s.includes('sale')) return 1
+      if (s.includes('sold')) return 2
+      return 0
+    }
+
+    // Always place pinned items first (if item.pinned === true). Within each partition,
+    // order by status group (regular -> sale -> sold) and then by date (newest first).
+    if (sortBy === 'newest' || sortBy === 'featured') {
+      filtered.sort((a, b) => {
+        const aStatus = (a.status || '').toString().toLowerCase()
+        const bStatus = (b.status || '').toString().toLowerCase()
+        const aPinned = aStatus.includes('pinned')
+        const bPinned = bStatus.includes('pinned')
+        if (aPinned && !bPinned) return -1
+        if (!aPinned && bPinned) return 1
+
+        const ag = statusGroup(a)
+        const bg = statusGroup(b)
+        if (ag !== bg) return ag - bg
+
+        return getRelevant(b) - getRelevant(a)
+      })
     } else if (sortBy === 'price-asc') {
-      filtered.sort((a, b) => (Number(a.purchase_price) || 0) - (Number(b.purchase_price) || 0))
+      // Keep pinned first for price sorts as well
+      filtered.sort((a, b) => {
+        const aStatus = (a.status || '').toString().toLowerCase()
+        const bStatus = (b.status || '').toString().toLowerCase()
+        const aPinned = aStatus.includes('pinned')
+        const bPinned = bStatus.includes('pinned')
+        if (aPinned && !bPinned) return -1
+        if (!aPinned && bPinned) return 1
+        return (Number(a.purchase_price) || 0) - (Number(b.purchase_price) || 0)
+      })
     } else if (sortBy === 'price-desc') {
-      filtered.sort((a, b) => (Number(b.purchase_price) || 0) - (Number(a.purchase_price) || 0))
+      filtered.sort((a, b) => {
+        const aStatus = (a.status || '').toString().toLowerCase()
+        const bStatus = (b.status || '').toString().toLowerCase()
+        const aPinned = aStatus.includes('pinned')
+        const bPinned = bStatus.includes('pinned')
+        if (aPinned && !bPinned) return -1
+        if (!aPinned && bPinned) return 1
+        return (Number(b.purchase_price) || 0) - (Number(a.purchase_price) || 0)
+      })
     }
 
     return filtered
