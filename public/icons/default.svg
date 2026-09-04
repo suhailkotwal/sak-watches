@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <!-- Blueprint / Architectural sketch grid -->
+    <pattern id="blueprint-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#2563eb" stroke-width="0.5" stroke-opacity="0.08" />
+    </pattern>
+    <radialGradient id="vignette" cx="50%" cy="50%" r="65%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0" />
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.06" />
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#f8fafc" />
+  <rect width="100%" height="100%" fill="url(#blueprint-grid)" />
+  <rect width="100%" height="100%" fill="url(#vignette)" />
+
+  <g fill="none" stroke="#334155" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Top Bracelet / Endlinks -->
+    <path d="M195 140 L195 40 L305 40 L305 140" stroke-width="2.5" stroke-dasharray="8 4" opacity="0.35" />
+    <path d="M200 40 L200 135 M300 40 L300 135" stroke-width="2.5" />
+    <path d="M232 40 L232 135 M268 40 L268 135" stroke-width="1.8" stroke-dasharray="6 3" />
+    <line x1="200" y1="70" x2="300" y2="70" stroke-width="2" />
+    <line x1="200" y1="100" x2="300" y2="100" stroke-width="2" />
+    <line x1="196" y1="130" x2="304" y2="130" stroke-width="2" />
+
+    <!-- Bottom Bracelet -->
+    <path d="M195 360 L195 460 L305 460 L305 360" stroke-width="2.5" stroke-dasharray="8 4" opacity="0.35" />
+    <path d="M200 365 L200 460 M300 365 L300 460" stroke-width="2.5" />
+    <path d="M232 365 L232 460 M268 365 L268 460" stroke-width="1.8" stroke-dasharray="6 3" />
+    <line x1="196" y1="370" x2="304" y2="370" stroke-width="2" />
+    <line x1="200" y1="400" x2="300" y2="400" stroke-width="2" />
+    <line x1="200" y1="430" x2="300" y2="430" stroke-width="2" />
+
+    <!-- Case & Lugs -->
+    <!-- Top-left lug -->
+    <path d="M195 130 C185 145 170 185 168 215" stroke-width="3" />
+    <!-- Bottom-left lug -->
+    <path d="M168 285 C170 315 185 355 195 370" stroke-width="3" />
+    <!-- Top-right lug -->
+    <path d="M305 130 C315 145 330 185 332 215" stroke-width="3" />
+    <!-- Bottom-right lug -->
+    <path d="M332 285 C330 315 315 355 305 370" stroke-width="3" />
+    <!-- Outer Case Outline -->
+    <circle cx="250" cy="250" r="102" stroke-width="2.2" opacity="0.5" />
+
+    <!-- Crown & Guards -->
+    <path d="M352 238 L364 240 L364 260 L352 262 Z" stroke-width="2" />
+    <line x1="360" y1="240" x2="360" y2="260" stroke-width="1.2" />
+
+    <!-- Bezel -->
+    <circle cx="250" cy="250" r="92" stroke-width="3.5" />
+    <circle cx="250" cy="250" r="86" stroke-width="1.5" stroke-dasharray="4 2" />
+
+    <!-- Dial Perimeter -->
+    <circle cx="250" cy="250" r="82" stroke-width="2" />
+
+    <!-- Baton Indices -->
+    <!-- 12 o'clock double marker -->
+    <line x1="248" y1="172" x2="248" y2="188" stroke-width="3" />
+    <line x1="252" y1="172" x2="252" y2="188" stroke-width="3" />
+    <!-- 3 o'clock (Date window indicator) -->
+    <rect x="310" y="244" width="16" height="12" rx="1.5" stroke-width="1.8" />
+    <!-- 6 o'clock -->
+    <line x1="250" y1="312" x2="250" y2="328" stroke-width="3" />
+    <!-- 9 o'clock -->
+    <line x1="172" y1="250" x2="188" y2="250" stroke-width="3" />
+
+    <!-- Hourly Batons (1, 2, 4, 5, 7, 8, 10, 11) -->
+    <line x1="289" y1="182" x2="281" y2="196" stroke-width="2.5" />
+    <line x1="318" y1="211" x2="304" y2="219" stroke-width="2.5" />
+    <line x1="318" y1="289" x2="304" y2="281" stroke-width="2.5" />
+    <line x1="289" y1="318" x2="281" y2="304" stroke-width="2.5" />
+    <line x1="211" y1="318" x2="219" y2="304" stroke-width="2.5" />
+    <line x1="182" y1="289" x2="196" y2="281" stroke-width="2.5" />
+    <line x1="182" y1="211" x2="196" y2="219" stroke-width="2.5" />
+    <line x1="211" y1="182" x2="219" y2="196" stroke-width="2.5" />
+
+    <!-- Hands (Positioned at aesthetic 10:10) -->
+    <!-- Hour Hand -->
+    <line x1="250" y1="250" x2="214" y2="208" stroke-width="4.5" stroke-linecap="square" />
+    <!-- Minute Hand -->
+    <line x1="250" y1="250" x2="296" y2="192" stroke-width="3.5" stroke-linecap="square" />
+    <!-- Seconds Hand -->
+    <line x1="250" y1="250" x2="250" y2="180" stroke-width="1.2" stroke="#ef4444" />
+    <line x1="250" y1="250" x2="250" y2="265" stroke-width="1.8" stroke="#ef4444" />
+
+    <!-- Center Pin -->
+    <circle cx="250" cy="250" r="4.5" fill="#334155" />
+    <circle cx="250" cy="250" r="1.5" fill="#f8fafc" />
+  </g>
+</svg>
