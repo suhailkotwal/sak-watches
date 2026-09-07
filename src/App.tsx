@@ -79,12 +79,17 @@ export default function App(): JSX.Element {
       return parseDate(item.purchase_date) || parseDate(item.sold_date) || 0
     }
 
-    // Helper to derive status group: 0 = regular/no-status, 1 = sale/for-sale, 2 = sold
+    // Helper to derive status group with explicit ordering:
+    // 0 = regular / no status
+    // 1 = sale / for-sale
+    // 2 = giveaway
+    // 3 = sold
     const statusGroup = (item: any) => {
       const s = (item.status || '').toString().trim().toLowerCase()
       if (s === '' || s === 'no status') return 0
       if (s.includes('for') || s.includes('sale')) return 1
-      if (s.includes('sold')) return 2
+      if (s.includes('giveaway')) return 2
+      if (s.includes('sold')) return 3
       return 0
     }
 
