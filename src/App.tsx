@@ -8,7 +8,7 @@ export default function App(): JSX.Element {
   const tiles = watchesData.map((w, i) => ({ ...w, id: i + 1 }))
   const [sortBy, setSortBy] = React.useState('newest')
   const [brandFilter, setBrandFilter] = React.useState('all')
-  const [availabilityFilter, setAvailabilityFilter] = React.useState('all')
+  const [availabilityFilter, setAvailabilityFilter] = React.useState('available')
 
   const brands = React.useMemo(() => {
     const set = new Set<string>()
@@ -24,7 +24,15 @@ export default function App(): JSX.Element {
 
       // availability filter
       const s = (t.status || '').toString().trim().toLowerCase()
-      const availability = s === '' || s === 'no status' ? 'available' : s.includes('sold') ? 'sold' : s.includes('for') || s.includes('sale') ? 'for-sale' : 'available'
+      const availability = s === '' || s === 'no status'
+        ? 'available'
+        : s.includes('sold')
+        ? 'sold'
+        : s.includes('giveaway')
+        ? 'giveaway'
+        : s.includes('for') || s.includes('sale')
+        ? 'for-sale'
+        : 'available'
       if (availabilityFilter !== 'all' && availability !== availabilityFilter) return false
 
       return true

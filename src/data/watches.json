@@ -181,7 +181,10 @@
         "images": [],
         "watch_link": "",
         "specs": {},
-        "category": ["dress", "vintage"]
+        "category": [
+            "dress",
+            "vintage"
+        ]
     },
     {
         "title": "Kohinoor",
@@ -196,7 +199,10 @@
         "images": [],
         "watch_link": "",
         "specs": {},
-        "category": ["vintage", "dress"]
+        "category": [
+            "vintage",
+            "dress"
+        ]
     },
     {
         "title": "Kohinoor",
@@ -226,7 +232,9 @@
         "images": [],
         "watch_link": "",
         "specs": {},
-        "category": ["dress"]
+        "category": [
+            "dress"
+        ]
     },
     {
         "title": "Presage Cocktail",
@@ -258,13 +266,17 @@
         "images": [],
         "watch_link": "",
         "specs": {},
-        "category": ["tool", "bronze", "meteorite"]
+        "category": [
+            "tool",
+            "bronze",
+            "meteorite"
+        ]
     },
     {
         "title": "Hammerhead V3",
         "brand": "Zelos",
         "description": "",
-        "status": "sale",
+        "status": "",
         "image": "/images/hammerhead-320.webp",
         "purchase_date": "Oct 2025",
         "purchase_price": null,
@@ -273,7 +285,10 @@
         "images": [],
         "watch_link": "",
         "specs": {},
-        "category": ["diver", "meteorite"]
+        "category": [
+            "diver",
+            "meteorite"
+        ]
     },
     {
         "title": "Seiko 5",
@@ -328,7 +343,7 @@
         "title": "WS-1400H-8AV",
         "brand": "Casio",
         "description": "",
-        "status": "",
+        "status": "sale",
         "image": "/images/casio-illum-320.webp",
         "purchase_date": "Oct 2025",
         "purchase_price": null,
@@ -437,7 +452,7 @@
         "title": "Nass 11",
         "brand": "HMT",
         "description": "",
-        "status": "",
+        "status": "sale",
         "image": "/images/nass11-320.webp",
         "purchase_date": "Oct 2025",
         "purchase_price": "8000 INR",
@@ -512,22 +527,6 @@
         "specs": {},
         "category": "casual"
     },
-    {
-        "title": "Metric Lite",
-        "brand": "Brew",
-        "description": "",
-        "status": "",
-        "image": "/images/brew-320.webp",
-        "purchase_date": "Sep 2025",
-        "purchase_price": "573 SGD",
-        "sold_price": null,
-        "sold_date": null,
-        "images": [],
-        "watch_link": "",
-        "specs": {},
-        "category": "casual"
-    }
-    ,
     {
         "title": "Terra Titanium",
         "brand": "Delhi Watch Company",
@@ -619,21 +618,6 @@
         "category": "casual"
     },
     {
-        "title": "MQ-24G-9EJH",
-        "brand": "Casio",
-        "description": "",
-        "status": "",
-        "image": "/images/casio-gold-round-320.webp",
-        "purchase_date": "Oct 2025",
-        "purchase_price": "30 SGD",
-        "sold_price": null,
-        "sold_date": null,
-        "images": [],
-        "watch_link": "",
-        "specs": {},
-        "category": "dress"
-    },
-    {
         "title": "Lapis Saute",
         "brand": "Zentier",
         "description": "",
@@ -677,8 +661,7 @@
         "watch_link": "",
         "specs": {},
         "category": "dress"
-    }
-    ,
+    },
     {
         "title": "Swatch Fifty Fathoms",
         "brand": "Swatch x Blancpain",
@@ -768,8 +751,7 @@
         "watch_link": "",
         "specs": {},
         "category": "limited"
-    }
-    ,
+    },
     {
         "title": "Grand Seiko Shunbun",
         "brand": "Grand Seiko",

@@ -35,6 +35,7 @@ export default function Filters({
           <option value="all">All</option>
           <option value="available">Available</option>
           <option value="for-sale">For Sale</option>
+          <option value="giveaway">Giveaway</option>
           <option value="sold">Sold</option>
         </select>
       </div>
