@@ -52,11 +52,11 @@ export default function WatchCard({ watch }: { watch: Watch }) {
         decoding="async"
       />
       <div className="card-body">
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <h3 className="card-title">{name}</h3>
+        <h3 className="card-title">{name}</h3>
+        <div className="brand-row">
+          {company ? <p className="card-brand">{company}</p> : <div />}
           <StatusBadge status={watch.status} />
         </div>
-        {company ? <p className="card-brand">{company}</p> : null}
       </div>
     </article>
   )

@@ -65,6 +65,7 @@ header { text-align: center }
 .card-body { padding: 12px; display: flex; flex-direction: column; flex: 1; min-width: 0 }
 .card-title { margin: 0 0 4px; font-size: 16px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
 .card-brand { margin: 0; color: #6b7280; font-size: 13px; overflow: hidden; text-overflow: ellipsis }
+.brand-row { display:flex; justify-content:space-between; align-items:center; gap:8px; margin-top:0px }
 .card-price { margin: 8px 0 0; font-weight: 600 }
 .card-desc { margin: 8px 0 0; color: #374151; font-size: 13px; overflow: hidden; text-overflow: ellipsis }
 
