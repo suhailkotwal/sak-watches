@@ -1,4 +1,5 @@
 import React from 'react'
+import { AVAILABILITY_FILTER_OPTIONS } from '../data/availability'
 
 export default function Filters({
   brands,
@@ -32,11 +33,9 @@ export default function Filters({
       <div className="availability-filter">
         <label htmlFor="availability-select">Availability</label>
         <select id="availability-select" value={availabilityFilter} onChange={(e) => setAvailabilityFilter(e.target.value)}>
-          <option value="all">All</option>
-          <option value="available">Available</option>
-          <option value="for-sale">For Sale</option>
-          <option value="giveaway">Giveaway</option>
-          <option value="sold">Sold</option>
+          {AVAILABILITY_FILTER_OPTIONS.map((option) => (
+            <option key={option.value} value={option.value}>{option.label}</option>
+          ))}
         </select>
       </div>
       <div className="sort">

@@ -2,6 +2,7 @@ import React from 'react'
 import WatchCard from './components/WatchCard'
 import Filters from './components/Filters'
 import watchesData from './data/watches.json'
+import { AVAILABILITY_ORDER, getAvailabilityValue } from './data/availability'
 
 export default function App(): JSX.Element {
   // use the watches JSON list
@@ -23,16 +24,7 @@ export default function App(): JSX.Element {
       if (brandFilter !== 'all' && (t.brand || '') !== brandFilter) return false
 
       // availability filter
-      const s = (t.status || '').toString().trim().toLowerCase()
-      const availability = s === '' || s === 'no status'
-        ? 'available'
-        : s.includes('sold')
-        ? 'sold'
-        : s.includes('giveaway')
-        ? 'giveaway'
-        : s.includes('for') || s.includes('sale')
-        ? 'for-sale'
-        : 'available'
+      const availability = getAvailabilityValue(t.status)
       if (availabilityFilter !== 'all' && availability !== availabilityFilter) return false
 
       return true
@@ -87,18 +79,10 @@ export default function App(): JSX.Element {
       return parseDate(item.purchase_date) || parseDate(item.sold_date) || 0
     }
 
-    // Helper to derive status group with explicit ordering:
-    // 0 = regular / no status
-    // 1 = sale / for-sale
-    // 2 = giveaway
-    // 3 = sold
+    // Helper to derive status group with explicit ordering.
     const statusGroup = (item: any) => {
-      const s = (item.status || '').toString().trim().toLowerCase()
-      if (s === '' || s === 'no status') return 0
-      if (s.includes('for') || s.includes('sale')) return 1
-      if (s.includes('giveaway')) return 2
-      if (s.includes('sold')) return 3
-      return 0
+      const availability = getAvailabilityValue(item.status)
+      return AVAILABILITY_ORDER[availability] ?? 0
     }
 
     // Always place pinned items first (if item.pinned === true). Within each partition,
